@@ -44,7 +44,7 @@ $result = $stmt->get_result();
         }
 
         form {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
@@ -70,6 +70,21 @@ $result = $stmt->get_result();
             background-color: #003f7f;
         }
 
+        .navigate-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .navigate-btn:hover {
+            background-color: #218838;
+        }
+
         ul {
             list-style-type: none;
             padding: 0;
@@ -89,7 +104,7 @@ $result = $stmt->get_result();
             align-items: center;
         }
 
-        a {
+        .borrow-btn {
             text-decoration: none;
             background-color: #28a745;
             color: white;
@@ -97,7 +112,7 @@ $result = $stmt->get_result();
             border-radius: 5px;
         }
 
-        a:hover {
+        .borrow-btn:hover {
             background-color: #218838;
         }
     </style>
@@ -106,19 +121,22 @@ $result = $stmt->get_result();
     <header>
         <h2>Search & Borrow Books</h2>
     </header>
+
     <form method="GET">
         <input type="text" name="search" placeholder="Search by title" value="<?= htmlspecialchars($search) ?>">
         <button type="submit">Search</button>
     </form>
 
+    <!-- Navigate to Borrowed Books page -->
+    <a href="view_borrowed_books.php" class="navigate-btn">View Borrowed Books</a>
+
+    <h3>Available Books</h3>
     <ul>
         <?php while ($book = $result->fetch_assoc()): ?>
             <li>
-                <div>
-                    <?= htmlspecialchars($book['title']) ?> by <?= htmlspecialchars($book['author']) ?> 
-                    (<?= htmlspecialchars($book['quantity']) ?> available)
-                </div>
-                <a href="borrow.php?book_id=<?= $book['id'] ?>">Borrow</a>
+                <?= htmlspecialchars($book['title']) ?> by <?= htmlspecialchars($book['author']) ?> 
+                (<?= htmlspecialchars($book['quantity']) ?> available)
+                <a class="borrow-btn" href="borrow.php?book_id=<?= $book['id'] ?>">Borrow</a>
             </li>
         <?php endwhile; ?>
     </ul>
