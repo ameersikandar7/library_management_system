@@ -23,7 +23,6 @@ $result = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search & Borrow Books</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -127,7 +126,6 @@ $result = $stmt->get_result();
         <button type="submit">Search</button>
     </form>
 
-    <!-- Navigate to Borrowed Books page -->
     <a href="view_borrowed_books.php" class="navigate-btn">View Borrowed Books</a>
 
     <h3>Available Books</h3>

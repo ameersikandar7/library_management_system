@@ -47,7 +47,6 @@ if ($loan_id) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return Book</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;

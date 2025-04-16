@@ -16,7 +16,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $book = $result->fetch_assoc();
 
-$message = ""; // Variable to hold feedback message
+$message = ""; 
 if ($book && $book['quantity'] > 0) {
     $conn->query("INSERT INTO loans (user_id, book_id, borrow_date) VALUES ($user_id, $book_id, NOW())");
     $conn->query("UPDATE books SET quantity = quantity - 1 WHERE id = $book_id");
@@ -32,7 +32,6 @@ if ($book && $book['quantity'] > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrow Book</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;

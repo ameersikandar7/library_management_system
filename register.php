@@ -1,16 +1,14 @@
 <?php
-include 'db.php'; // Ensure your database connection is included
+include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $name = $_POST['name'];
      $email = $_POST['email'];
-     $role = $_POST['role']; // 'admin' or 'user'
+     $role = $_POST['role'];
      $password = $_POST['password'];
 
-     // Hash the password
      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-     // Insert the hashed password into the database
      $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
      $stmt->bind_param("ssss", $name, $email, $hashedPassword, $role);
 
