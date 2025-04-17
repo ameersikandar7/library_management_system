@@ -1,24 +1,16 @@
 <?php
-include 'db.php'; // Include the database connection
+include 'db.php'; 
 session_start();
-
-// Ensure only admins can access this page
 if ($_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
-
-// Handle form submission to add a new user
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $role = $_POST['role'];
     $password = $_POST['password'];
-
-    // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    // Insert into the database
     $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $name, $email, $hashedPassword, $role);
 
@@ -36,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add User</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;

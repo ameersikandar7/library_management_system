@@ -1,23 +1,17 @@
 <?php
 include 'db.php';
 session_start();
-
-// Ensure only admins can access this page
 if ($_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
 
 $id = $_GET['id'];
-
-// Fetch the book details
 $stmt = $conn->prepare("SELECT * FROM books WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $book = $result->fetch_assoc();
-
-// Handle form submission to update the book
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = $_POST['title'];
     $author = $_POST['author'];

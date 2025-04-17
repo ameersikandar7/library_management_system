@@ -126,7 +126,7 @@ $result = $stmt->get_result();
         <button type="submit">Search</button>
     </form>
 
-    <a href="view_borrowed_books.php" class="navigate-btn">View Borrowed Books</a>
+    <a href="view_borrowed_books.php" class="navigate-btn">View Loans</a>
 
     <h3>Available Books</h3>
     <ul>
